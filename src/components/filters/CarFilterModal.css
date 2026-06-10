@@ -1,0 +1,189 @@
+﻿/* ─────────────────────────────────────────────
+   OVERLAY
+───────────────────────────────────────────── */
+
+.filter-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* ─────────────────────────────────────────────
+   MODAL
+───────────────────────────────────────────── */
+
+.filter-modal {
+    width: 100%;
+    max-width: 620px;
+    background: rgba(20, 20, 30, 0.96);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04);
+    animation: modalShow 0.25s ease;
+}
+
+@keyframes modalShow {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ─────────────────────────────────────────────
+   HEADER
+───────────────────────────────────────────── */
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+    .filter-header h2 {
+        margin: 0;
+        color: white;
+        font-size: 28px;
+        font-family: 'Syne', sans-serif;
+    }
+
+    .filter-header p {
+        margin-top: 6px;
+        color: rgba(255,255,255,0.55);
+        font-size: 14px;
+    }
+
+.filter-close {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .filter-close:hover {
+        background: rgba(255,255,255,0.14);
+        transform: rotate(90deg);
+    }
+
+/* ─────────────────────────────────────────────
+   BODY
+───────────────────────────────────────────── */
+
+.filter-body {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .filter-group label {
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+.filter-row {
+    display: flex;
+    gap: 14px;
+}
+
+/* INPUTS */
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+    .filter-group input:focus,
+    .filter-group select:focus {
+        border-color: rgba(232,160,32,0.6);
+        box-shadow: 0 0 0 3px rgba(232,160,32,0.12);
+    }
+
+    .filter-group input::placeholder {
+        color: rgba(255,255,255,0.4);
+    }
+
+/* SELECT */
+
+.filter-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.6) 50%), linear-gradient(135deg, rgba(255,255,255,0.6) 50%, transparent 50%), rgba(255,255,255,0.05);
+    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px), 100% 0;
+    background-size: 6px 6px, 6px 6px, 100% 100%;
+    background-repeat: no-repeat;
+}
+
+    /* FIX invisible options */
+
+    .filter-group select option {
+        background: #1c1c28;
+        color: white;
+    }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+
+.filter-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    padding: 24px 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+
+    .filter-modal {
+        width: 92%;
+    }
+
+    .filter-row {
+        flex-direction: column;
+    }
+
+    .filter-footer {
+        flex-direction: column;
+    }
+}

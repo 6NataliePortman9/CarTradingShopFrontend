@@ -1,0 +1,501 @@
+﻿/* ─────────────────────────────────────────────
+   ABOUT PAGE  —  matches CTS design system
+   Fonts: Syne (headings) + DM Sans (body)
+   Variables inherited from global stylesheet
+───────────────────────────────────────────── */
+
+.about-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+/* ─────────────────────────────────────────────
+   SHARED TYPOGRAPHY HELPERS
+───────────────────────────────────────────── */
+
+.about-section-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--car-accent);
+    margin-bottom: 10px;
+}
+
+.about-section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--car-text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.about-section-title--center {
+    text-align: center;
+}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+
+.about-hero {
+    position: relative;
+    text-align: center;
+    padding: 90px 24px 80px;
+    border-bottom: 1px solid var(--car-border);
+    overflow: hidden;
+}
+
+.about-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--car-border);
+    background: var(--car-surface-2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--car-muted);
+    margin-bottom: 28px;
+}
+
+.about-hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 900;
+    color: var(--car-text);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin: 0 0 20px;
+}
+
+.about-hero-accent {
+    color: var(--car-accent);
+}
+
+.about-hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--car-muted);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.65;
+}
+
+.about-hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* decorative rings */
+.about-hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--car-border);
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.35;
+    animation: about-ring-pulse 6s ease-in-out infinite;
+}
+
+.about-hero-ring--1 {
+    width: 420px;
+    height: 420px;
+    animation-delay: 0s;
+}
+
+.about-hero-ring--2 {
+    width: 620px;
+    height: 620px;
+    animation-delay: 1.5s;
+}
+
+.about-hero-ring--3 {
+    width: 820px;
+    height: 820px;
+    animation-delay: 3s;
+}
+
+@keyframes about-ring-pulse {
+    0%, 100% {
+        opacity: 0.18;
+    }
+
+    50% {
+        opacity: 0.42;
+    }
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────── */
+
+.about-btn-primary {
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--car-accent);
+    color: #0A0C10;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.18s, transform 0.15s;
+}
+
+    .about-btn-primary:hover {
+        background: #f5b540;
+        transform: translateY(-2px);
+    }
+
+.about-btn-primary--lg {
+    padding: 16px 40px;
+    font-size: 16px;
+}
+
+.about-btn-ghost {
+    padding: 14px 28px;
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--car-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.18s, color 0.18s, transform 0.15s;
+}
+
+    .about-btn-ghost:hover {
+        border-color: var(--car-accent);
+        color: var(--car-accent);
+        transform: translateY(-2px);
+    }
+
+/* ─────────────────────────────────────────────
+   STATS
+───────────────────────────────────────────── */
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.about-stat-card {
+    background: var(--car-surface);
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-xl);
+    padding: 28px 24px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+    .about-stat-card:hover {
+        border-color: var(--car-accent);
+        transform: translateY(-3px);
+    }
+
+.about-stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--car-accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.about-stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--car-muted);
+}
+
+/* ─────────────────────────────────────────────
+   MISSION
+───────────────────────────────────────────── */
+
+.about-mission {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 56px;
+    align-items: start;
+    background: var(--car-surface);
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+}
+
+.about-mission-right p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--car-muted);
+    line-height: 1.75;
+    margin: 0 0 16px;
+}
+
+.about-mission-divider {
+    height: 1px;
+    background: var(--car-border);
+    margin: 24px 0;
+}
+
+.about-mission-quote {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--car-text);
+    font-style: italic;
+    border-left: 3px solid var(--car-accent);
+    padding-left: 16px;
+    line-height: 1.5;
+}
+
+.about-mission-quote-author {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--car-muted);
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+}
+
+/* ─────────────────────────────────────────────
+   VALUES
+───────────────────────────────────────────── */
+
+.about-values {
+    text-align: center;
+}
+
+    .about-values > .about-section-eyebrow {
+        text-align: center;
+    }
+
+.about-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.about-value-card {
+    background: var(--car-surface);
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-xl);
+    padding: 28px 20px;
+    text-align: left;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+    .about-value-card:hover {
+        border-color: var(--car-accent);
+        transform: translateY(-3px);
+    }
+
+.about-value-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.about-value-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--car-text);
+    margin-bottom: 8px;
+}
+
+.about-value-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--car-muted);
+    line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────────
+   TEAM
+───────────────────────────────────────────── */
+
+.about-team {
+    text-align: center;
+}
+
+    .about-team > .about-section-eyebrow {
+        text-align: center;
+    }
+
+/* replaced */ .about-team-grid-OLD {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.about-team-card {
+    background: var(--car-surface);
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-xl);
+    padding: 32px 20px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+    .about-team-card:hover {
+        border-color: var(--car-accent);
+        transform: translateY(-3px);
+    }
+
+.about-team-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--car-accent-dim, rgba(232,160,32,0.12));
+    border: 2px solid var(--car-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--car-accent);
+    margin-bottom: 4px;
+}
+
+.about-team-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--car-text);
+}
+
+.about-team-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--car-muted);
+}
+
+/* ─────────────────────────────────────────────
+   CTA
+───────────────────────────────────────────── */
+
+.about-cta {
+    background: var(--car-surface);
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-xl);
+    padding: 60px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    .about-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient( ellipse 60% 50% at 50% 100%, rgba(232, 160, 32, 0.07) 0%, transparent 70% );
+        pointer-events: none;
+    }
+
+.about-cta-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--car-text);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+}
+
+.about-cta-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--car-muted);
+    margin: 0 0 32px;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .about-values-grid,
+    /* replaced */ .about-team-grid-OLD {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-mission {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 32px 24px;
+    }
+
+    .about-hero {
+        padding: 60px 16px 60px;
+    }
+
+    .about-hero-ring--2,
+    .about-hero-ring--3 {
+        display: none;
+    }
+}
+
+@media (max-width: 540px) {
+    .about-stats,
+    .about-values-grid,
+    /* replaced */ .about-team-grid-OLD {
+        grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+        padding: 40px 24px;
+    }
+
+    .about-cta-title {
+        font-size: 24px;
+    }
+}
+
+/* ── TEAM GRID: centered, works with any count ── */
+.about-team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.about-team-card {
+    width: 220px;
+    flex-shrink: 0;
+}

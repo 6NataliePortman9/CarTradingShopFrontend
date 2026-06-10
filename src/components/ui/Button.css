@@ -1,0 +1,38 @@
+﻿.btn {
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+    .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+/* Size variants */
+.btn-md {
+    padding: 11px 22px;
+    font-size: 14px;
+}
+
+.btn-sm {
+    padding: 7px 14px;
+    font-size: 12px;
+}
+
+.btn-lg {
+    padding: 14px 28px;
+    font-size: 16px;
+}
+
+/* Додаткові варіанти (якщо потрібно) */
+.btn-full {
+    width: 100%;
+}

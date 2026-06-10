@@ -1,0 +1,24 @@
+﻿.t-hero {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.t-h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.t-h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.t-body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.t-muted {
+    color: var(--color-muted);
+}

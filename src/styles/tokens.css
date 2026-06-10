@@ -1,0 +1,26 @@
+﻿:root {
+    /* ── Colors ── */
+    --car-bg: #0A0C10;
+    --car-surface: #12151C;
+    --car-surface-2: #1A1E28;
+    --car-surface-3: #232836;
+    --car-border: rgba(255,255,255,0.08);
+    --car-border-hover: rgba(255,255,255,0.16);
+    --car-accent: #E8A020; /* amber / CTA */
+    --car-accent-dim: rgba(232,160,32,0.15);
+    --car-blue: #3B82F6; /* info */
+    --car-success: #22C55E;
+    --car-danger: #EF4444;
+    --car-text: #F0EDE8;
+    --car-muted: #8B8F9A;
+    /* ── Typography ── */
+    --font-display: 'Syne', sans-serif; /* headings */
+    --font-body: 'DM Sans', sans-serif; /* body */
+    /* ── Radius ── */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    /* ── Shadows ── */
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+}

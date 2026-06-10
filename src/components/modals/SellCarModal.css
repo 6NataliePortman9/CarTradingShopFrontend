@@ -1,0 +1,106 @@
+﻿.sellcar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 20px;
+}
+
+.sellcar-modal {
+    width: 100%;
+    max-width: 950px;
+    max-height: 92vh;
+    overflow-y: auto;
+    background: var(--car-surface);
+    border: 1px solid var(--car-border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+}
+
+.sellcar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.sellcar-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--car-text);
+}
+
+.sellcar-subtitle {
+    color: var(--car-muted);
+    margin-top: 4px;
+}
+
+.sellcar-close {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid var(--car-border);
+    background: var(--car-surface-2);
+    color: var(--car-text);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .sellcar-close:hover {
+        border-color: var(--car-accent);
+        color: var(--car-accent);
+    }
+
+.sellcar-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sellcar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.sellcar-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.ds-select option {
+    background: var(--car-surface-2);
+    color: var(--car-text);
+}
+
+@media (max-width: 768px) {
+
+    .sellcar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sellcar-modal {
+        padding: 20px;
+    }
+}
+
+.sellcar-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.sellcar-preview-image {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--car-border);
+}
