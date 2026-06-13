@@ -36,7 +36,7 @@ const VALUES = [
 ];
 
 const TEAM = [
-    { initials: "NP", name: "Nikita Podryez", role: "Student of NULP CI-403" },
+    { initials: "NP", name: "Nikita Podryez", role: "Student of NULP CE-403" },
 ];
 
 export default function AboutPage() {

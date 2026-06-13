@@ -78,27 +78,30 @@ export default function Navbar({ onSearch, onOpenFilters, onOpenSellModal }) {
                 />
 
                 <Button
+                    className="btn-icon"
                     variant="primary"
                     size="sm"
                     onClick={() => onSearch(searchTerm)}
                 >
-                    Search
+                    🔍
                 </Button>
 
                 <Button
+                    className="btn-icon"
                     variant="primary"
                     size="sm"
                     onClick={onOpenFilters}
                 >
-                    Filter
+                    🎛️
                 </Button>
 
                 <Button
+                    className="btn-icon"
                     variant="primary"
                     size="sm"
                     onClick={onOpenSellModal}
                 >
-                    Sell Car
+                    🏷️
                 </Button>
 
             </div>

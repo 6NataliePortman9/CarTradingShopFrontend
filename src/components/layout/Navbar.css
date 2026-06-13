@@ -1,120 +1,108 @@
-﻿.navbar-preview {
+﻿/* ─── NAVBAR ─── */
+.navbar-preview {
     width: 100%;
-    min-height: 80px;
+    min-height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    padding: 16px 32px;
-    background: rgba(20, 20, 30, 0.82);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(18, 18, 28, 0.92); /* Трохи темніше для мобільних */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-/* LOGO BUTTON */
+/* LOGO */
 .nav-brand-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 18px;
+    flex-shrink: 0;
+    padding: 8px 12px;
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 12px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.08);
     cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
-
-    .nav-brand-btn:hover {
-        background: rgba(255,255,255,0.20);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    }
 
 .nav-logo {
-    height: 42px;
+    height: 38px;
     object-fit: contain;
-    user-select: none;
-    pointer-events: none;
 }
 
-/* SEARCH */
-
+/* SEARCH SECTION */
 .navbar-search {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 10px;
-    max-width: 650px;
+    gap: 8px;
+    max-width: 680px;
+    min-width: 0; /* Важливо для стиснення */
 }
 
+/* На мобільних прибираємо деякі кнопки */
+@media (max-width: 768px) {
+    .navbar-search {
+        gap: 6px;
+    }
+
+    .search-input {
+        display: none; /* Ховаємо input на дуже маленьких екранах */
+    }
+}
+
+/* SEARCH INPUT */
 .search-input {
     flex: 1;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(255,255,255,0.06);
     color: white;
-    outline: none;
     font-size: 14px;
-    transition: all 0.2s ease;
+    min-width: 0;
 }
 
     .search-input:focus {
-        border: 1px solid rgba(255,255,255,0.25);
-        background: rgba(255,255,255,0.1);
-        box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
-    }
-
-    .search-input::placeholder {
-        color: rgba(255,255,255,0.5);
-    }
-
-/* LINKS */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.nav-link {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 10px 14px;
-    border-radius: 10px;
-    transition: all 0.2s ease;
-}
-
-    .nav-link:hover {
-        background: rgba(255,255,255,0.08);
-        transform: translateY(-1px);
+        border-color: var(--car-accent);
+        background: rgba(255,255,255,0.12);
     }
 
 /* ACTIONS */
-
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
-/* ICON BUTTONS */
-
+/* Іконки */
 .btn-icon {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+/* Адаптивність для дуже маленьких екранів */
+@media (max-width: 480px) {
+    .navbar-preview {
+        padding: 10px 12px;
+        min-height: 64px;
+    }
+
+    .nav-logo {
+        height: 34px;
+    }
+
+    .btn-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
+    }
 }
