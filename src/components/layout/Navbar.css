@@ -1,108 +1,229 @@
-﻿/* ─── NAVBAR ─── */
+﻿/* ==========================
+   MAIN NAVBAR
+========================== */
 .navbar-preview {
     width: 100%;
-    min-height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 16px;
-    background: rgba(18, 18, 28, 0.92); /* Трохи темніше для мобільних */
+    background: rgba(18, 21, 28, 0.95);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-/* LOGO */
-.nav-brand-btn {
+.navbar-container {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    /* без justify-content — розкладка йде через margin-right/left auto */
+}
+
+/* ==========================
+   LEFT SIDE — притиснутий до лівого краю
+========================== */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     flex-shrink: 0;
+    margin-right: auto;
+}
+
+.nav-brand-btn {
     padding: 8px 12px;
-    border: 1px solid rgba(255,255,255,0.12);
     border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.08);
     cursor: pointer;
+    transition: all 0.2s;
 }
+
+    .nav-brand-btn:hover {
+        background: rgba(255,255,255,0.12);
+    }
 
 .nav-logo {
     height: 38px;
     object-fit: contain;
 }
 
-/* SEARCH SECTION */
-.navbar-search {
+/* ==========================
+   CENTER - SEARCH
+========================== */
+.navbar-center {
     flex: 1;
+    max-width: 680px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-search {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;
-    max-width: 680px;
-    min-width: 0; /* Важливо для стиснення */
 }
 
-/* На мобільних прибираємо деякі кнопки */
-@media (max-width: 768px) {
-    .navbar-search {
-        gap: 6px;
-    }
-
-    .search-input {
-        display: none; /* Ховаємо input на дуже маленьких екранах */
-    }
-}
-
-/* SEARCH INPUT */
 .search-input {
     flex: 1;
-    padding: 10px 14px;
-    border-radius: 12px;
+    padding: 12px 16px;
+    border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(255,255,255,0.06);
     color: white;
-    font-size: 14px;
-    min-width: 0;
+    font-size: 15px;
+    transition: all 0.2s;
 }
 
     .search-input:focus {
+        outline: none;
         border-color: var(--car-accent);
         background: rgba(255,255,255,0.12);
+        box-shadow: 0 0 0 3px rgba(232, 160, 32, 0.15);
     }
 
-/* ACTIONS */
+    .search-input::placeholder {
+        color: rgba(255,255,255,0.45);
+    }
+
+/* ==========================
+   RIGHT SIDE — притиснутий до правого краю
+========================== */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* ==========================
+   ICON BUTTONS
+========================== */
+.btn-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+    .btn-icon:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+/* ==========================
+   NOTIFICATIONS
+========================== */
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ef4444;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    border: 2px solid rgba(18, 21, 28, 0.95);
+}
+
+/* ==========================
+   DESKTOP ACTIONS
+========================== */
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 6px;
-    flex-shrink: 0;
 }
 
-/* Іконки */
-.btn-icon {
-    width: 42px;
-    height: 42px;
+.desktop-only {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 19px;
-    flex-shrink: 0;
 }
 
-/* Адаптивність для дуже маленьких екранів */
-@media (max-width: 480px) {
-    .navbar-preview {
-        padding: 10px 12px;
-        min-height: 64px;
+/* ==========================
+   MOBILE BOTTOM NAV
+========================== */
+.mobile-bottom-nav {
+    display: none;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media (max-width: 992px) {
+    .navbar-center {
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .navbar-container {
+        padding: 0 16px;
+        height: 64px;
+    }
+
+    .navbar-search {
+        max-width: 320px;
+    }
+
+    .btn-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 
     .nav-logo {
         height: 34px;
     }
 
-    .btn-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 17px;
+    .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 66px;
+        background: rgba(18, 21, 28, 0.98);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2000;
+        backdrop-filter: blur(16px);
+    }
+
+    body {
+        padding-bottom: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-optional {
+        display: none;
+    }
+
+    .search-input {
+        font-size: 14px;
+        padding: 10px 12px;
     }
 }
