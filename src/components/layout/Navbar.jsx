@@ -82,10 +82,19 @@ export default function Navbar({
                     className="btn-icon"
                     variant="primary"
                     onClick={() => onSearch(searchTerm)}
+                    title="Search"
                 >
                     🔍
                 </Button>
 
+                <Button
+                    className="btn-icon"
+                    variant="primary"
+                    onClick={onOpenFilters}
+                    title="Filter Search"
+                >
+                    🎛️
+                </Button>
             </div>
 
             {/* ===== DESKTOP ACTIONS ===== */}
@@ -94,15 +103,8 @@ export default function Navbar({
                 <Button
                     className="btn-icon"
                     variant="primary"
-                    onClick={onOpenFilters}
-                >
-                    🎛️
-                </Button>
-
-                <Button
-                    className="btn-icon"
-                    variant="primary"
                     onClick={onOpenSellModal}
+                    title="Sell Your Car"
                 >
                     🏷️
                 </Button>
@@ -111,6 +113,7 @@ export default function Navbar({
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/cart")}
+                    title="Your Cart"
                 >
                     🛒
                 </Button>
@@ -119,6 +122,7 @@ export default function Navbar({
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/selected")}
+                    title="Selected Cars"
                 >
                     ❤️
                 </Button>
@@ -128,9 +132,9 @@ export default function Navbar({
                     <Button
                         variant="primary"
                         className="btn-icon"
-                        onClick={() =>
-                            navigate("/notifications")
+                        onClick={() => navigate("/notifications")
                         }
+                        title="Notifications"
                     >
                         💬
                     </Button>
@@ -150,6 +154,7 @@ export default function Navbar({
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/profile")}
+                    title="You'r Profile"
                 >
                     👤
                 </Button>
@@ -163,6 +168,7 @@ export default function Navbar({
                     className="btn-icon"
                     variant="primary"
                     onClick={onOpenSellModal}
+                    title="Sell Your Car"
                 >
                     🏷️
                 </Button>
@@ -171,6 +177,7 @@ export default function Navbar({
                     className="btn-icon"
                     variant="primary"
                     onClick={onOpenFilters}
+                    title="Filter Search"
                 >
                     🎛️
                 </Button>
@@ -179,6 +186,7 @@ export default function Navbar({
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/cart")}
+                    title="Your Cart"
                 >
                     🛒
                 </Button>
@@ -187,6 +195,7 @@ export default function Navbar({
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/selected")}
+                    title="Selected Cars"
                 >
                     ❤️
                 </Button>
@@ -197,8 +206,8 @@ export default function Navbar({
                         variant="primary"
                         className="btn-icon"
                         onClick={() =>
-                            navigate("/notifications")
-                        }
+                            navigate("/notifications")}
+                        title="Notifications"
                     >
                         💬
                     </Button>
@@ -218,6 +227,7 @@ export default function Navbar({
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/profile")}
+                    title="You'r Profile"
                 >
                     👤
                 </Button>

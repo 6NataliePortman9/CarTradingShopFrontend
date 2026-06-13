@@ -1,11 +1,11 @@
 ﻿import { useState } from "react";
 import Button from "../ui/Button";
 import Badge from "../ui/Badge";
+import Toast from "../ui/Toast";
 import "./BrowseCar.css";
 
 import { addToCart } from "../../services/cartService";
 import { addToSelected } from "../../services/selectedService";
-
 import { API_BASE } from "../../config/api";
 
 const PLACEHOLDER = "https://placehold.co/600x400?text=No+Image";
@@ -27,7 +27,6 @@ const statusMap = {
     2: "Reserved"
 };
 
-
 export default function BrowseCar({
     car,
     onContactSeller,
@@ -35,32 +34,28 @@ export default function BrowseCar({
     showSelectedButton = true,
     customActions = null
 }) {
+    const [toast, setToast] = useState(null);   // ← Головний стан
+
+    const showToast = (message, variant = "success") => {
+        setToast({ message, variant });
+        // Автоматично закривається через Toast компонент
+    };
 
     const handleAddToCart = async () => {
-
         try {
-
             await addToCart(car.carId || car.CarId);
-
-            alert("Added to cart");
-
+            showToast("Додано в кошик 🛒", "success");
         } catch (error) {
-
-            alert(error.message);
+            showToast(error.message || "Не вдалося додати в кошик", "danger");
         }
     };
 
     const handleAddToSelected = async () => {
-
         try {
-
             await addToSelected(car.carId || car.CarId);
-
-            alert("Added to selected");
-
+            showToast("Додано в обране ❤️", "success");
         } catch (error) {
-
-            alert(error.message);
+            showToast(error.message || "Не вдалося додати в обране", "danger");
         }
     };
 
@@ -233,7 +228,6 @@ export default function BrowseCar({
 
             {/* FOOTER */}
             <div className="listing-footer">
-
                 <Button
                     onClick={() => onContactSeller?.(car)}
                     style={{ flex: 1 }}
@@ -264,8 +258,17 @@ export default function BrowseCar({
                 )}
 
                 {customActions}
-
             </div>
+
+            {/* Toast повідомлення */}
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    variant={toast.variant}
+                    onClose={() => setToast(null)}
+                />
+            )}
+        
 
         </div>
     );

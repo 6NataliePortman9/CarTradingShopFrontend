@@ -56,22 +56,25 @@
 }
 
 .search-input {
-    flex: 1;
-    padding: 11px 16px;
+    flex: 1; /* Залишаємо гнучкість */
+    max-width: 520px; /* ← Збільшили максимальну ширину */
+    padding: 11px 18px; /* Трохи більше padding по горизонталі */
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.1);
     background: rgba(255,255,255,0.06);
     color: white;
     font-size: 15px;
     transition: all 0.2s;
+    outline: none;
 }
 
     .search-input:focus {
-        outline: none;
         border-color: var(--car-accent);
-        background: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.08);
         box-shadow: 0 0 0 3px rgba(232, 160, 32, 0.15);
     }
+
+/* Якщо потрібно ще довше — можеш збільшити max-width */
 
 /* ==========================
    BUTTONS
