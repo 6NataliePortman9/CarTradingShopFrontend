@@ -174,15 +174,6 @@ export default function Navbar({
                 </Button>
 
                 <Button
-                    className="btn-icon"
-                    variant="primary"
-                    onClick={onOpenFilters}
-                    title="Filter Search"
-                >
-                    🎛️
-                </Button>
-
-                <Button
                     variant="primary"
                     className="btn-icon"
                     onClick={() => navigate("/cart")}
