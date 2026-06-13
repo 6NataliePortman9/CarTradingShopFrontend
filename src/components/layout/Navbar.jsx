@@ -5,6 +5,7 @@ import { getUnreadCount } from "../../services/notificationService";
 import Button from "../ui/Button";
 
 import logo from "../../assets/CTS2_after_paint-removebg-preview.png";
+
 import "./Navbar.css";
 
 export default function Navbar({
@@ -13,133 +14,98 @@ export default function Navbar({
     onOpenSellModal
 }) {
     const navigate = useNavigate();
+
     const [searchTerm, setSearchTerm] = useState("");
     const [unreadCount, setUnreadCount] = useState(0);
 
-    const userId = Number(localStorage.getItem("userId"));
+    const userId =
+        Number(localStorage.getItem("userId"));
 
     useEffect(() => {
         loadUnread();
-        const interval = setInterval(loadUnread, 5000);
+
+        const interval =
+            setInterval(loadUnread, 5000);
+
         return () => clearInterval(interval);
     }, []);
 
     async function loadUnread() {
         try {
-            const count = await getUnreadCount(userId);
+            const count =
+                await getUnreadCount(userId);
+
             setUnreadCount(count);
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
     }
 
     return (
-        <>
-            <nav className="navbar-preview">
-                <div className="navbar-container">
+        <nav className="navbar-preview">
 
-                    {/* LEFT SIDE - Logo / About */}
-                    <div className="navbar-left">
-                        <button
-                            className="nav-brand-btn"
-                            onClick={() => navigate("/about")}
-                        >
-                            <img src={logo} alt="CTS" className="nav-logo" />
-                        </button>
-                    </div>
+            {/* ===== TOP ROW ===== */}
+            <div className="navbar-top">
 
-                    {/* CENTER - Search */}
-                    <div className="navbar-center">
-                        <div className="navbar-search">
-                            <input
-                                type="text"
-                                placeholder="Search cars by make, model or year..."
-                                className="search-input"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && onSearch(searchTerm)}
-                            />
-                            <Button
-                                className="btn-icon search-btn"
-                                variant="primary"
-                                onClick={() => onSearch(searchTerm)}
-                            >
-                                🔍
-                            </Button>
-                        </div>
-                    </div>
+                <button
+                    className="nav-brand-btn"
+                    onClick={() => navigate("/about")}
+                >
+                    <img
+                        src={logo}
+                        alt="CTS"
+                        className="nav-logo"
+                    />
+                </button>
 
-                    {/* RIGHT SIDE - Actions */}
-                    <div className="navbar-right">
-                        <Button
-                            variant="ghost"
-                            className="btn-icon mobile-optional"
-                            onClick={onOpenFilters}
-                            title="Filters"
-                        >
-                            🎛️
-                        </Button>
+                <Button
+                    variant="primary"
+                    className="btn-icon"
+                    onClick={() => navigate("/browse")}
+                    title="Home"
+                >
+                    🏠
+                </Button>
 
-                        <Button
-                            variant="ghost"
-                            className="btn-icon mobile-optional"
-                            onClick={onOpenSellModal}
-                            title="Sell Car"
-                        >
-                            🏷️
-                        </Button>
+                <input
+                    type="text"
+                    placeholder="Search cars..."
+                    className="search-input"
+                    value={searchTerm}
+                    onChange={(e) =>
+                        setSearchTerm(e.target.value)
+                    }
+                />
 
-                        {/* Desktop Actions */}
-                        <div className="nav-actions desktop-only">
-                            <Button
-                                variant="ghost"
-                                className="btn-icon"
-                                onClick={() => navigate("/cart")}
-                                title="Cart"
-                            >
-                                🛒
-                            </Button>
+                <Button
+                    className="btn-icon"
+                    variant="primary"
+                    onClick={() => onSearch(searchTerm)}
+                >
+                    🔍
+                </Button>
 
-                            <Button
-                                variant="ghost"
-                                className="btn-icon"
-                                onClick={() => navigate("/selected")}
-                                title="Selected"
-                            >
-                                ❤️
-                            </Button>
+            </div>
 
-                            <div className="notification-wrapper">
-                                <Button
-                                    variant="ghost"
-                                    className="btn-icon"
-                                    onClick={() => navigate("/notifications")}
-                                    title="Notifications"
-                                >
-                                    💬
-                                </Button>
-                                {unreadCount > 0 && (
-                                    <div className="notification-badge">
-                                        {unreadCount}
-                                    </div>
-                                )}
-                            </div>
+            {/* ===== DESKTOP ACTIONS ===== */}
+            <div className="nav-actions desktop-actions">
 
-                            <Button
-                                variant="ghost"
-                                className="btn-icon"
-                                onClick={() => navigate("/profile")}
-                                title="Profile"
-                            >
-                                👤
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+                <Button
+                    className="btn-icon"
+                    variant="primary"
+                    onClick={onOpenFilters}
+                >
+                    🎛️
+                </Button>
 
-            {/* MOBILE BOTTOM NAVIGATION */}
-            <div className="mobile-bottom-nav">
+                <Button
+                    className="btn-icon"
+                    variant="primary"
+                    onClick={onOpenSellModal}
+                >
+                    🏷️
+                </Button>
 
                 <Button
                     variant="primary"
@@ -170,7 +136,8 @@ export default function Navbar({
                     </Button>
 
                     {
-                        unreadCount > 0 && (
+                        unreadCount > 0 &&
+                        (
                             <div className="notification-badge">
                                 {unreadCount}
                             </div>
@@ -188,6 +155,75 @@ export default function Navbar({
                 </Button>
 
             </div>
-        </>
+
+            {/* ===== MOBILE BOTTOM BAR ===== */}
+            <div className="mobile-bottom-nav">
+
+                <Button
+                    className="btn-icon"
+                    variant="primary"
+                    onClick={onOpenSellModal}
+                >
+                    🏷️
+                </Button>
+
+                <Button
+                    className="btn-icon"
+                    variant="primary"
+                    onClick={onOpenFilters}
+                >
+                    🎛️
+                </Button>
+
+                <Button
+                    variant="primary"
+                    className="btn-icon"
+                    onClick={() => navigate("/cart")}
+                >
+                    🛒
+                </Button>
+
+                <Button
+                    variant="primary"
+                    className="btn-icon"
+                    onClick={() => navigate("/selected")}
+                >
+                    ❤️
+                </Button>
+
+                <div className="notification-wrapper">
+
+                    <Button
+                        variant="primary"
+                        className="btn-icon"
+                        onClick={() =>
+                            navigate("/notifications")
+                        }
+                    >
+                        💬
+                    </Button>
+
+                    {
+                        unreadCount > 0 &&
+                        (
+                            <div className="notification-badge">
+                                {unreadCount}
+                            </div>
+                        )
+                    }
+
+                </div>
+
+                <Button
+                    variant="primary"
+                    className="btn-icon"
+                    onClick={() => navigate("/profile")}
+                >
+                    👤
+                </Button>
+
+            </div>
+
+        </nav>
     );
 }
