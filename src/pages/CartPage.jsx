@@ -4,15 +4,17 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import BrowseCar from "../components/layout/BrowseCar";
 import Button from "../components/ui/Button";
-import {
-    getCartCars,
-    removeFromCart
-} from "../services/cartService";
+import ContactSellerModal from "../components/modals/ContactSellerModal";
+import { getCartCars, removeFromCart } from "../services/cartService";
+import { API_BASE } from "../config/api";
 
 export default function CartPage() {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedCar, setSelectedCar] = useState(null);
+    const [isContactOpen, setIsContactOpen] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         loadCars();
     }, []);
@@ -21,7 +23,19 @@ export default function CartPage() {
         try {
             setLoading(true);
             const data = await getCartCars();
-            setCars(data);
+
+            const token = localStorage.getItem("token");
+            const fullCars = await Promise.all(
+                data.map(async (car) => {
+                    const id = car.carId || car.id;
+                    const res = await fetch(`${API_BASE}/api/cars/${id}`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    return res.ok ? await res.json() : car;
+                })
+            );
+
+            setCars(fullCars);
         } catch (error) {
             console.error(error);
         } finally {
@@ -39,7 +53,6 @@ export default function CartPage() {
     }
 
     function handleMakeOrder(carId) {
-
         navigate(`/checkout/${carId}`);
     }
 
@@ -72,6 +85,10 @@ export default function CartPage() {
                             <BrowseCar
                                 key={car.carId || car.id}
                                 car={car}
+                                onContactSeller={(car) => {
+                                    setSelectedCar(car);
+                                    setIsContactOpen(true);
+                                }}
                                 showCartButton={false}
                                 showSelectedButton={false}
                                 customActions={
@@ -99,6 +116,12 @@ export default function CartPage() {
                     </div>
                 )}
             </div>
+
+            <ContactSellerModal
+                isOpen={isContactOpen}
+                onClose={() => setIsContactOpen(false)}
+                car={selectedCar}
+            />
         </>
     );
 }

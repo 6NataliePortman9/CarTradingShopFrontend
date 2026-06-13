@@ -5,18 +5,21 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import BrowseCar from "../components/layout/BrowseCar";
 import Button from "../components/ui/Button";
+import ContactSellerModal from "../components/modals/ContactSellerModal";
 
-import {
-    getSelectedCars,
-    removeFromSelected
-} from "../services/selectedService";
-
+import { getSelectedCars, removeFromSelected } from "../services/selectedService";
 import { addToCart } from "../services/cartService";
-
+import { API_BASE } from "../config/api";
 export default function SelectedPage() {
     const navigate = useNavigate();
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [selectedCar, setSelectedCar] = useState(null);
+    const [isContactOpen, setIsContactOpen] = useState(false);
+
+    // ← Додай стан для модалу контакту
+    const [contactCar, setContactCar] = useState(null);
 
     useEffect(() => {
         loadCars();
@@ -26,7 +29,20 @@ export default function SelectedPage() {
         try {
             setLoading(true);
             const data = await getSelectedCars();
-            setCars(data);
+
+            // Підвантажуємо повні дані кожної машини щоб мати userId/sellerId
+            const token = localStorage.getItem("token");
+            const fullCars = await Promise.all(
+                data.map(async (car) => {
+                    const id = car.carId || car.id;
+                    const res = await fetch(`${API_BASE}/api/cars/${id}`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    return res.ok ? await res.json() : car;
+                })
+            );
+
+            setCars(fullCars);
         } catch (error) {
             console.error(error);
         } finally {
@@ -43,7 +59,6 @@ export default function SelectedPage() {
         try {
             await addToCart(carId);
             alert("Авто успішно додано в корзину!");
-            // Опціонально: видаляємо зі збережених після додавання в корзину
             await removeFromSelected(carId);
             loadCars();
         } catch (error) {
@@ -80,6 +95,10 @@ export default function SelectedPage() {
                             <BrowseCar
                                 key={car.carId || car.id}
                                 car={car}
+                                onContactSeller={(car) => {        // ← додай це
+                                    setSelectedCar(car);
+                                    setIsContactOpen(true);
+                                }}
                                 showCartButton={false}
                                 showSelectedButton={false}
                                 customActions={
@@ -108,6 +127,12 @@ export default function SelectedPage() {
                     </div>
                 )}
             </div>
+
+            <ContactSellerModal
+                isOpen={isContactOpen}
+                onClose={() => setIsContactOpen(false)}
+                car={selectedCar}
+            />
         </>
     );
 }

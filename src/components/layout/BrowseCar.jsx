@@ -229,7 +229,10 @@ export default function BrowseCar({
             {/* FOOTER */}
             <div className="listing-footer">
                 <Button
-                    onClick={() => onContactSeller?.(car)}
+                    onClick={() => {
+                        console.log("Contact Seller clicked, car:", car);
+                        onContactSeller?.(car);
+                    }}
                     style={{ flex: 1 }}
                 >
                     Contact Seller

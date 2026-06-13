@@ -32,50 +32,52 @@ export default function ContactSellerModal({
         return null;
 
     async function handleSend() {
-
         try {
-
             setSending(true);
 
-            const user =
-                JSON.parse(localStorage.getItem("user"));
+            const senderId = Number(localStorage.getItem("userId"));
+            const sellerId = car.userId || car.UserId;
 
-            const senderId = user?.userId;
+            // ← додай це
+            console.log("senderId:", senderId);
+            console.log("sellerId:", sellerId);
+            console.log("carId:", car.carId || car.CarId);
+            console.log("full car object:", JSON.stringify(car));
 
-            const sellerId =
-                car.userId || car.UserId;
-            console.log("CAR:", car);
+            if (!senderId || !sellerId) {
+                alert(`Missing data: senderId=${senderId}, sellerId=${sellerId}`);
+                return;
+            }
 
-            console.log("SENDER:",
-                senderId);
+            if (!senderId) {
+                alert("You must be logged in to send a message.");
+                return;
+            }
 
-            console.log("SELLER:",
-                sellerId);
-            const conversation =
-                await getOrCreateConversation(
-                    senderId,
-                    sellerId,
-                    car.carId || car.CarId
-                );
+            if (senderId === sellerId) {
+                alert("You cannot message yourself.");
+                return;
+            }
+
+            const conversation = await getOrCreateConversation(
+                senderId,
+                sellerId,
+                car.carId || car.CarId
+            );
+
             await sendMessage(
-                conversation.conversationId ||
-                conversation.ConversationId,
+                conversation.conversationId || conversation.ConversationId,
                 senderId,
                 message
             );
 
             setSuccess(true);
-
             setMessage("");
 
         } catch (error) {
-
             console.error(error);
-
             alert("Failed to send message");
-
         } finally {
-
             setSending(false);
         }
     }
