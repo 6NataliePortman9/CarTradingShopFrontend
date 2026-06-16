@@ -98,7 +98,7 @@ export default function CartPage() {
                     }}
                     disabled
                 >
-                    🚫 Sold
+                    🚫
                 </Button>
             );
         }
