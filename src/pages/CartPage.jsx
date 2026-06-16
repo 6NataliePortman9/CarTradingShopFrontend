@@ -92,7 +92,7 @@ export default function CartPage() {
                 <Button
                     variant="danger"
                     style={{
-                        minWidth: "70px",
+                        minWidth: "60px",
                         height: "48px",
                         fontWeight: "600",
                         borderRadius: "12px"
