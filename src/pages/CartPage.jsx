@@ -126,7 +126,7 @@ export default function CartPage() {
                 variant="danger"
                 className="btn-icon"
                 style={{
-                    minWidth: "160px",
+                    minWidth: "100px",
                     height: "48px",
                     fontSize: "15px",
                     fontWeight: "600",
