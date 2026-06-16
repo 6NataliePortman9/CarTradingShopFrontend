@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Card from "../components/ui/Card";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
+import Toast from "../components/ui/Toast";
 import { register } from "../services/authService";
 
 export default function RegisterPage() {
@@ -15,6 +16,7 @@ export default function RegisterPage() {
     });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [toast, setToast] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -31,8 +33,17 @@ export default function RegisterPage() {
         try {
             const result = await register(formData);
             console.log("Registration successful", result);
-            alert("Account created successfully! Please sign in.");
-            navigate("/browse", { replace: true });
+
+            setToast({
+                message: "Account created successfully! Please sign in.",
+                variant: "success"
+            });
+
+            // Затримка перед редиректом щоб Toast встиг показатись
+            setTimeout(() => {
+                navigate("/login", { replace: true });
+            }, 1200);
+
         } catch (err) {
             setError(err.message || "Registration failed");
         } finally {
@@ -90,7 +101,11 @@ export default function RegisterPage() {
                         required
                     />
 
-                    {error && <div className="input-error" style={{ marginBottom: "12px" }}>{error}</div>}
+                    {error && (
+                        <div className="input-error" style={{ marginBottom: "12px" }}>
+                            {error}
+                        </div>
+                    )}
 
                     <Button
                         type="submit"
@@ -108,6 +123,14 @@ export default function RegisterPage() {
                     </span>
                 </div>
             </Card>
+
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    variant={toast.variant}
+                    onClose={() => setToast(null)}
+                />
+            )}
         </div>
     );
 }

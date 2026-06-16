@@ -106,23 +106,41 @@ export async function createCar(carData) {
 }
 
 export async function updateCar(id, carData) {
-
     const token = localStorage.getItem("token");
 
+    const formData = new FormData();
+    formData.append("CarName", carData.carName);
+    formData.append("CarMarka", carData.carMarka);
+    formData.append("CarPrice", carData.carPrice);
+    formData.append("YearOfIssue", carData.yearOfIssue);
+    formData.append("CarCondition", carData.carCondition);
+    formData.append("CarGearBox", carData.carGearBox);
+    formData.append("CarLocation", carData.carLocation);
+    formData.append("CarOwnerTelephoneNumber", carData.carOwnerTelephoneNumber);
+    formData.append("CarNumber", carData.carNumber);
+
+    if (carData.carStatus !== undefined && carData.carStatus !== null) {
+        formData.append("CarStatus", carData.carStatus);
+    }
+
+    if (carData.images && carData.images.length > 0) {
+        carData.images.forEach(image => {
+            formData.append("CarImages", image);
+        });
+    }
+
     const response = await fetch(`${BASE_URL}/${id}`, {
-
         method: "PUT",
-
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            Authorization: `Bearer ${token}`
+            // Content-Type НЕ встановлюємо — браузер сам додає boundary для FormData
         },
-
-        body: JSON.stringify(carData)
+        body: formData
     });
 
     if (!response.ok) {
-        throw new Error("Failed to update car");
+        const text = await response.text();
+        throw new Error(text || "Failed to update car");
     }
 }
 

@@ -1,9 +1,11 @@
 ﻿// src/pages/ProfilePage.jsx
-
+import { updateCar } from "../../services/carService";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import "./ProfilePage.css";
+import ImageUploader from "../modals/ImageUploader";
+//import ImageUploader from "./ImageUploader";
 
 import { API_BASE } from "../../config/api";
 //const API_BASE = "https://cartradingshopapi20260609212931-hbfpetcbhrc9bzhc.swedencentral-01.azurewebsites.net";
@@ -59,7 +61,8 @@ export default function ProfilePage() {
         carLocation: "",
         carOwnerTelephoneNumber: "",
         carNumber: "",
-        carStatus: "Available"
+        carStatus: "Available",
+        images: []
     });
 
     const [showOrders, setShowOrders] =
@@ -533,63 +536,39 @@ export default function ProfilePage() {
     }
 
     async function handleUpdateCar(e) {
-
         e.preventDefault();
 
         try {
-
             setSaving(true);
-
             setErrorMsg("");
             setSuccessMsg("");
 
-            const payload = {
+            const conditionMap = { "New": 0, "Used": 1 };
+            const gearBoxMap = { "Manual": 0, "Automatic": 1, "SemiAutomatic": 2 };
+            const statusMap = { "Available": 0, "Sold": 1, "Reserved": 2 };
+
+            await updateCar(editingCar.carId, {
                 carName: carForm.carName,
                 carMarka: carForm.carMarka,
                 carPrice: Number(carForm.carPrice),
                 yearOfIssue: Number(carForm.yearOfIssue),
-                carCondition: carForm.carCondition,
-                carGearBox: carForm.carGearBox,
+                carCondition: conditionMap[carForm.carCondition] ?? carForm.carCondition,
+                carGearBox: gearBoxMap[carForm.carGearBox] ?? carForm.carGearBox,
                 carLocation: carForm.carLocation,
                 carOwnerTelephoneNumber: carForm.carOwnerTelephoneNumber,
                 carNumber: carForm.carNumber,
-                
-            };
-
-            const res = await fetch(
-                `${API_BASE}/api/cars/${editingCar.carId}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify(payload)
-                }
-            );
-
-            if (!res.ok) {
-
-                throw new Error("Failed updating car");
-            }
+                carStatus: statusMap[carForm.carStatus] ?? carForm.carStatus,
+                images: carForm.images ?? [],
+            });
 
             setSuccessMsg("Car updated successfully");
-
             closeEditCarModal();
-
             await loadMyCars();
 
-        }
-        catch (err) {
-
+        } catch (err) {
             console.error(err);
-
-            setErrorMsg(
-                err.message || "Failed updating car"
-            );
-        }
-        finally {
-
+            setErrorMsg(err.message || "Failed updating car");
+        } finally {
             setSaving(false);
         }
     }
@@ -1211,6 +1190,22 @@ export default function ProfilePage() {
                                                 : "Save Changes"}
                                         </button>
 
+                                    </div>
+
+                                    <div className="editcar-grid" style={{ gridColumn: "1 / -1" }}>
+                                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                                            <label className="profile-field-label">
+                                                Replace Photos
+                                            </label>
+                                            <p style={{ fontSize: "12px", color: "var(--car-muted)", margin: 0 }}>
+                                                Upload new photos to replace existing ones
+                                            </p>
+                                            <ImageUploader
+                                                onChange={(files) =>
+                                                    setCarForm(prev => ({ ...prev, images: files }))
+                                                }
+                                            />
+                                        </div>
                                     </div>
 
                                 </form>
