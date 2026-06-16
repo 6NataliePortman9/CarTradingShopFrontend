@@ -27,7 +27,6 @@ export default function Navbar({ onSearch, onOpenFilters }) {
             console.error(error);
         }
     }
-
     return (
         <nav className="navbar-preview">
 
