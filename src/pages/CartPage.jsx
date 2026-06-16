@@ -92,7 +92,7 @@ export default function CartPage() {
                 <Button
                     variant="danger"
                     style={{
-                        minWidth: "100px",
+                        minWidth: "80px",
                         height: "48px",
                         fontWeight: "600",
                         borderRadius: "12px"
@@ -109,14 +109,14 @@ export default function CartPage() {
                 <Button
                     variant="secondary"
                     style={{
-                        minWidth: "130px",
+                        minWidth: "50px",
                         height: "48px",
                         fontWeight: "600",
                         borderRadius: "12px"
                     }}
                     disabled
                 >
-                    ⏳ Reserved
+                    ⏳
                 </Button>
             );
         }
@@ -126,7 +126,7 @@ export default function CartPage() {
                 variant="danger"
                 className="btn-icon"
                 style={{
-                    minWidth: "80px",
+                    minWidth: "50px",
                     height: "48px",
                     fontSize: "15px",
                     fontWeight: "600",
