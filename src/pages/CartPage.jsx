@@ -135,7 +135,7 @@ export default function CartPage() {
                     handleMakeOrder(car.carId || car.id)
                 }
             >
-                🤝 Make Order
+                🤝
             </Button>
         );
     }
