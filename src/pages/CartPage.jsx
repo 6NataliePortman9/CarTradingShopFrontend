@@ -92,7 +92,7 @@ export default function CartPage() {
                 <Button
                     variant="danger"
                     style={{
-                        minWidth: "110px",
+                        minWidth: "100px",
                         height: "48px",
                         fontWeight: "600",
                         borderRadius: "12px"
@@ -109,7 +109,7 @@ export default function CartPage() {
                 <Button
                     variant="secondary"
                     style={{
-                        minWidth: "120px",
+                        minWidth: "130px",
                         height: "48px",
                         fontWeight: "600",
                         borderRadius: "12px"
@@ -126,7 +126,7 @@ export default function CartPage() {
                 variant="danger"
                 className="btn-icon"
                 style={{
-                    minWidth: "100px",
+                    minWidth: "80px",
                     height: "48px",
                     fontSize: "15px",
                     fontWeight: "600",
