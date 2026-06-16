@@ -79,63 +79,65 @@ export default function CartPage() {
         navigate(`/checkout/${carId}`);
     }
 
+    // НОВА ВЕРСІЯ
     function renderOrderAction(car) {
-    const status = typeof car.carStatus === "number"
-        ? ["Available", "Sold", "Reserved"][car.carStatus]
-        : car.carStatus || "Available";
 
-    if (status === "Sold") {
+        const status =
+            typeof car.carStatus === "number"
+                ? ["Available", "Sold", "Reserved"][car.carStatus]
+                : car.carStatus || "Available";
+
+        if (status === "Sold") {
+            return (
+                <Button
+                    variant="danger"
+                    style={{
+                        minWidth: "110px",
+                        height: "48px",
+                        fontWeight: "600",
+                        borderRadius: "12px"
+                    }}
+                    disabled
+                >
+                    🚫 Sold
+                </Button>
+            );
+        }
+
+        if (status === "Reserved") {
+            return (
+                <Button
+                    variant="secondary"
+                    style={{
+                        minWidth: "120px",
+                        height: "48px",
+                        fontWeight: "600",
+                        borderRadius: "12px"
+                    }}
+                    disabled
+                >
+                    ⏳ Reserved
+                </Button>
+            );
+        }
+
         return (
             <Button
-                variant="danger"
+                variant="primary"
                 style={{
-                    minWidth: "110px",
+                    minWidth: "160px",
                     height: "48px",
+                    fontSize: "15px",
                     fontWeight: "600",
                     borderRadius: "12px"
                 }}
-                disabled
+                onClick={() =>
+                    handleMakeOrder(car.carId || car.id)
+                }
             >
-                🚫 Sold
+                🤝 Make Order
             </Button>
         );
-    }
-
-    if (status === "Reserved") {
-        return (
-            <Button
-                variant="secondary"
-                style={{
-                    minWidth: "120px",
-                    height: "48px",
-                    fontWeight: "600",
-                    borderRadius: "12px"
-                }}
-                disabled
-            >
-                ⏳ Reserved
-            </Button>
-        );
-    }
-
-    // Available - основна дія
-    return (
-        <Button
-            variant="primary"
-            style={{
-                minWidth: "160px",
-                height: "48px",
-                fontSize: "15px",
-                fontWeight: "600",
-                borderRadius: "12px"
-            }}
-            onClick={() => handleMakeOrder(car.carId || car.id)}
-        >
-            🤝 Make Order
-        </Button>
-    );
-}
-        return null;
     }
 
     return (
