@@ -123,7 +123,8 @@ export default function CartPage() {
 
         return (
             <Button
-                variant="primary"
+                variant="danger"
+                className="btn-icon"
                 style={{
                     minWidth: "160px",
                     height: "48px",
