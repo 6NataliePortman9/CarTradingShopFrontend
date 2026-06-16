@@ -76,7 +76,6 @@ export default function BrowseCarsPage() {
             </>
         );
     }
-
     return (
         <>
             <Navbar

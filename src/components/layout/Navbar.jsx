@@ -171,7 +171,6 @@ export default function Navbar({ onSearch, onOpenFilters }) {
                         <div className="notification-badge">{unreadCount}</div>
                     )}
                 </div>
-
                 <Button
                     variant="primary"
                     className="btn-icon"

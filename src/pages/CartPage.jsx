@@ -86,7 +86,6 @@ export default function CartPage() {
             typeof car.carStatus === "number"
                 ? ["Available", "Sold", "Reserved"][car.carStatus]
                 : car.carStatus || "Available";
-
         if (status === "Sold") {
             return (
                 <Button
