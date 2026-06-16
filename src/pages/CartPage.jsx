@@ -80,75 +80,61 @@ export default function CartPage() {
     }
 
     function renderOrderAction(car) {
+    const status = typeof car.carStatus === "number"
+        ? ["Available", "Sold", "Reserved"][car.carStatus]
+        : car.carStatus || "Available";
 
-        const status =
-            typeof car.carStatus === "number"
-                ? ["Available", "Sold", "Reserved"][car.carStatus]
-                : car.carStatus;
+    if (status === "Sold") {
+        return (
+            <Button
+                variant="danger"
+                style={{
+                    minWidth: "110px",
+                    height: "48px",
+                    fontWeight: "600",
+                    borderRadius: "12px"
+                }}
+                disabled
+            >
+                🚫 Sold
+            </Button>
+        );
+    }
 
-        if (status === "Available") {
-            return (
-                <Button
-                    variant="secondary"
-                    className="btn-icon"
-                    onClick={() =>
-                        handleMakeOrder(car.carId || car.id)
-                    }
-                    title="Make an Order"
-                >
-                    🤝
-                </Button>
-            );
-        }
+    if (status === "Reserved") {
+        return (
+            <Button
+                variant="secondary"
+                style={{
+                    minWidth: "120px",
+                    height: "48px",
+                    fontWeight: "600",
+                    borderRadius: "12px"
+                }}
+                disabled
+            >
+                ⏳ Reserved
+            </Button>
+        );
+    }
 
-        if (status === "Sold") {
-            return (
-                <div
-                    title="This vehicle has already been sold"
-                    style={{
-                        minWidth: "90px",
-                        height: "42px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "10px",
-                        background: "rgba(255, 59, 59, 0.15)",
-                        border: "1px solid rgba(255, 59, 59, 0.4)",
-                        color: "#ff5c5c",
-                        fontWeight: "700",
-                        fontSize: "14px",
-                        padding: "0 12px"
-                    }}
-                >
-                    🚫 Sold
-                </div>
-            );
-        }
-
-        if (status === "Reserved") {
-            return (
-                <div
-                    title="This vehicle is currently reserved"
-                    style={{
-                        minWidth: "110px",
-                        height: "42px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "10px",
-                        background: "rgba(255, 174, 0, 0.15)",
-                        border: "1px solid rgba(255, 174, 0, 0.4)",
-                        color: "#ffb84d",
-                        fontWeight: "700",
-                        fontSize: "14px",
-                        padding: "0 12px"
-                    }}
-                >
-                    ⏳ Reserved
-                </div>
-            );
-        }
-
+    // Available - основна дія
+    return (
+        <Button
+            variant="primary"
+            style={{
+                minWidth: "160px",
+                height: "48px",
+                fontSize: "15px",
+                fontWeight: "600",
+                borderRadius: "12px"
+            }}
+            onClick={() => handleMakeOrder(car.carId || car.id)}
+        >
+            🤝 Make Order
+        </Button>
+    );
+}
         return null;
     }
 
